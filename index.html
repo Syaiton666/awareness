@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,6 @@ body{
   padding:40px 20px;
 }
 
-/* BOX FOTO */
 .quiz-box{
   width:300px;
   border:4px solid #2f3e5c;
@@ -30,7 +29,6 @@ body{
   margin-top:10px;
 }
 
-/* BOX VIDEO */
 .video-box{
   margin-top:40px;
   width:90%;
@@ -48,15 +46,15 @@ video{
 
 <body>
 
-<!-- FOTO + KETERANGAN DI ATAS -->
+<!-- FOTO + KETERANGAN -->
 <div class="quiz-box">
   <h2>Silahkan Anda Mengisi Kuis Pada QR Di Bawah :)</h2>
   <img src="./Phising.png" alt="Kuis Phising">
 </div>
 
-<!-- VIDEO DI BAWAH -->
+<!-- VIDEO -->
 <div class="video-box">
-  <video id="video" autoplay muted playsinline controls>
+  <video id="video" autoplay loop playsinline controls>
     <source src="./vid.mp4" type="video/mp4">
   </video>
 </div>
@@ -64,10 +62,15 @@ video{
 <script>
 const video = document.getElementById("video");
 
-window.addEventListener("click", () => {
-  video.muted = false;
-  video.volume = 1;
-  video.play();
+window.addEventListener("load", async () => {
+  try {
+    video.volume = 1;
+    video.muted = false;
+    await video.play();
+  } catch (e) {
+    // Jika browser blokir suara, biarkan saja tanpa tampilkan apapun
+    console.log("Autoplay dengan suara diblokir browser.");
+  }
 });
 </script>
 
